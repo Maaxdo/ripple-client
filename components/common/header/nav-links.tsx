@@ -15,7 +15,7 @@ export type NavLink = {
   link: string;
 };
 
-const NAV_LINKS: NavLink[] = [
+export const NAV_LINKS: NavLink[] = [
   {
     name: "Programs",
     link: "/programs",
