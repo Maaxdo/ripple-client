@@ -23,8 +23,10 @@ export default function Page() {
           className={"hidden lg:block w-24 xl:w-36 absolute left-1/5 bottom-0"}
         />
       </HeadSection>
-      <OpenRoles />
-      <Roles />
+      <div className="space-y-8 bg-white">
+        <OpenRoles />
+        <Roles />
+      </div>
     </>
   );
 }

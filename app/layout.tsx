@@ -23,13 +23,15 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} antialiased`}>
         <div className={"p-2 md:p-4"}>{children}</div>
-        <div
-          className={
-            "py-6 px-4 md:py-20 md:px-16 bg-black rounded-2xl relative h-max space-y-12"
-          }
-        >
-          <Techlab />
-          <Footer />
+        <div className="p-2">
+          <div
+            className={
+              "py-6 px-4 md:py-20 md:px-16 bg-black rounded-2xl relative h-max space-y-12"
+            }
+          >
+            <Techlab />
+            <Footer />
+          </div>
         </div>
       </body>
     </html>

@@ -51,7 +51,12 @@ export const Job: FC<JobProps> = ({
   return (
     <div className={c} {...restProps}>
       <div className={`flex justify-between ${manRope.className}`}>
-        <h3 className={"font-medium text-base md:text-lg max-w-56"}>{title}</h3>
+        <Link
+          href={"/jobs/slug"}
+          className={"font-medium text-base md:text-lg hover:text-[#FF6C24]"}
+        >
+          <span className={"max-w-56 block"}>{title}</span>
+        </Link>
         <button
           className={
             "rounded-full bg-[#FFF2E7] w-10 h-8 md:h-10 flex justify-center items-center"

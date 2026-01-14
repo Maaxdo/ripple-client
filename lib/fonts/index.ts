@@ -15,3 +15,20 @@ export const madeSoulmaze = localFont({
   src: "./made-regular.otf",
   fallback: ["system-ui"],
 });
+
+export const creatoDisplay = localFont({
+  variable: "--font-made-creatordisplay",
+  src: [
+    {
+      path: "./CreatoDisplay-Regular.otf",
+      style: "normal",
+      weight: "400",
+    },
+    {
+      path: "./CreatoDisplay-Bold.otf",
+      style: "bold",
+      weight: "700",
+    },
+  ],
+  fallback: ["system-ui"],
+});

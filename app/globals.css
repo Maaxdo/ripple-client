@@ -2,7 +2,7 @@
 @plugin "tailwindcss-animate";
 
 :root {
-  --background: #ffffff;
+  --background: #FFFCF3;
   --foreground: #171717;
   --secondary: #DE03B5;
 }
