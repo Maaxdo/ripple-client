@@ -6,12 +6,12 @@ export const X: FC<IconProps> = ({ className, size = 18, ...restProps }) => {
   const c = cn(className);
   return (
     <svg
-      width={size}
-      height={size}
       viewBox="0 0 18 16"
       fill="none"
-      className={c}
       xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      className={c}
       {...restProps}
     >
       <path

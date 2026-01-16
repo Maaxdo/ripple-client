@@ -22,3 +22,11 @@ body {
   color: var(--foreground);
   font-family: var(--font-inter), Arial, Helvetica, sans-serif;
 }
+
+.testimonial-fade-left{
+  background: linear-gradient(270deg, rgba(0, 0, 0, 0) 0%, #000000 100%);
+}
+
+.testimonial-fade-right{
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, #000000 100%);
+}

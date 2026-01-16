@@ -32,3 +32,20 @@ export const creatoDisplay = localFont({
   ],
   fallback: ["system-ui"],
 });
+
+export const aeonik = localFont({
+  variable: "--font-made-aeonik",
+  src: [
+    {
+      path: "./AeonikTRIAL-Regular.otf",
+      style: "normal",
+      weight: "400",
+    },
+    {
+      path: "./AeonikTRIAL-Bold.otf",
+      style: "bold",
+      weight: "700",
+    },
+  ],
+  fallback: ["system-ui"],
+});

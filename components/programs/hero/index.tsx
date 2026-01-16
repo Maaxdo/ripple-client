@@ -20,26 +20,28 @@ export const Hero: FC = () => {
                 "hidden lg:inline border-white border-[0.1rem] text-white text-xs md:text-sm lg:text-base rounded-full px-4 py-2"
               }
             >
-              Ripple Jobs
+              Ripple Programs
             </span>
           </div>
           <h1
             className={`text-center lg:text-left text-white ${madeSoulmaze.className} text-2xl md:text-4xl lg:text-4xl xl:text-[3.43rem] leading-7 md:leading-10 lg:leading-12`}
           >
-            Creative <br /> tech <br />{" "}
-            <span className={"text-[#FF78E6]"}>opportunities</span>
+            Learn the <br /> <span className={"text-[#FFF8C7]"}>skills</span>{" "}
+            <br />
+            <span className={"text-[#FFF8C7]"}>shaping</span> <br />
+            <span className={"text-[#FF78E6]"}>the future</span>
           </h1>
           <p
             className={
               "text-[#F5F3F0B2] text-xs md:text-sm xl:text-base text-center lg:text-left"
             }
           >
-            Discover jobs, internships, and opportunities shared and curated by
-            Ripple, partners and the community.
+            From beginner-friendly pathways to advanced creative tech labs,
+            Ripple offers programs designed for real-world impact.
           </p>
           <div className={"flex justify-center lg:justify-start"}>
             <Button asChild size={"lg"} variant={"secondary"}>
-              <Link href={"/"}>See open roles</Link>
+              <Link href={"#courses"}>See all courses</Link>
             </Button>
           </div>
         </div>

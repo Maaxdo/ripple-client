@@ -1,4 +1,4 @@
-import { ChevronDown, Search } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { FC } from "react";
 import { Button } from "@/components/common/button";
 import { Container } from "@/components/common/container";
@@ -8,7 +8,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/common/dropdown";
-import { Input } from "@/components/common/form/input";
+import { Search } from "@/components/common/search";
 import { madeSoulmaze } from "@/lib/fonts";
 
 export const OpenRoles: FC = () => {
@@ -21,7 +21,10 @@ export const OpenRoles: FC = () => {
           open <span className={"text-[#DE03B5]"}>roles</span>
         </h2>
         <div className="space-y-4">
-          <RoleSearch />
+          <Search
+            placeholder={"Search for jobs"}
+            inputClassName={"md:w-11/12"}
+          />
           <RoleFilter />
         </div>
       </Container>
@@ -137,22 +140,6 @@ const RoleFilter: FC = () => {
           <DropdownMenuItem>Item 4</DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
-    </div>
-  );
-};
-
-const RoleSearch: FC = () => {
-  return (
-    <div className={"w-full flex justify-center relative"}>
-      <Input
-        placeholder={"Search for jobs"}
-        className={
-          "md:w-11/12 rounded-full h-12 bg-[#F5F5F5] text-xs md:text-sm border-transparent pr-12"
-        }
-      />
-      <Search
-        className={"stroke-1 absolute size-4 top-1/3 right-4 md:right-14"}
-      />
     </div>
   );
 };
