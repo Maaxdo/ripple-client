@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { Header } from "@/components/common/header";
 import { Building } from "@/components/home/building";
 import { Explore } from "@/components/home/explore";
 import { HeadSection } from "@/components/home/head-section";
