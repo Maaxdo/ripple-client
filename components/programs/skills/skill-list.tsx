@@ -1,5 +1,6 @@
 import { ChevronRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { FC } from "react";
 
 export const SkillList: FC = () => {
@@ -19,21 +20,26 @@ export const SkillList: FC = () => {
   );
 };
 
-const Program: FC = () => {
+export const Program: FC = () => {
   return (
     <div className={"bg-white p-4 rounded-3xl space-y-3"}>
-      <Image
-        className={"block object-cover w-full rounded-3xl h-72"}
-        src={"/images/home/event-1.png"}
-        alt={"Title here"}
-        width={230}
-        height={330}
-      />
+      <Link href={"/programs/slug"} className={"block"}>
+        <Image
+          className={"block object-cover w-full rounded-3xl h-72"}
+          src={"/images/home/event-1.png"}
+          alt={"Title here"}
+          width={230}
+          height={330}
+        />
+      </Link>
       <div className="flex items-center gap-12">
         <div className={"text-[#4E4E4E]"}>
-          <h3 className={"font-bold text-sm md:text-base"}>
+          <Link
+            href={"/programs/slug"}
+            className={"font-bold text-sm md:text-base"}
+          >
             Title of the course here
-          </h3>
+          </Link>
           <p className={"text-xs md:text-sm"}>Ripple</p>
         </div>
         <div>

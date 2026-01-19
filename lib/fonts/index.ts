@@ -1,4 +1,4 @@
-import { Inter, Manrope } from "next/font/google";
+import { Instrument_Sans, Inter, Manrope } from "next/font/google";
 import localFont from "next/font/local";
 
 export const inter = Inter({
@@ -7,6 +7,10 @@ export const inter = Inter({
 });
 export const manRope = Manrope({
   variable: "--font-manrope",
+  subsets: ["latin"],
+});
+export const instrumentSans = Instrument_Sans({
+  variable: "--font-instrument-sans",
   subsets: ["latin"],
 });
 
