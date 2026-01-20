@@ -16,7 +16,7 @@ export default function Home() {
           alt={"Hero 2"}
           width={355}
           height={800}
-          className={"w-48 md:w-72 lg:w-96 absolute right-0 -top-4"}
+          className={"w-48 md:w-72 lg:w-96 absolute right-0 top-24"}
         />
         <Image
           src={"/images/home/hero-3.png"}
