@@ -42,7 +42,7 @@ jobs:
           key: ${{secrets.SSH_KEY}}
           port: 21098
           source: "ripple.tar.gz"
-          target: "public_html/"
+          target: "public_html/ripple"
 
       - name: Extract files on remote server
         uses: appleboy/ssh-action@master
