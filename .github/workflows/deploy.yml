@@ -31,6 +31,18 @@ jobs:
             --exclude="./node_modules/**" \
             --exclude="./src" \
             --exclude="./src/**" \
+            --exclude="./.github" \
+            --exclude="./.github/**" \
+            --exclude="./app" \
+            --exclude="./app/**" \        
+            --exclude="./components" \
+            --exclude="./components/**" \ 
+            --exclude="./hooks" \
+            --exclude="./hooks/**" \
+            --exclude="./lib" \
+            --exclude="./lib/**" \
+            --exclude="./types" \
+            --exclude="./types/**" \                                                   
             .
 
       - name: Upload files via SCP
