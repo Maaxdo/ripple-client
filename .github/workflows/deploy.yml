@@ -40,7 +40,7 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
           key: ${{secrets.SSH_KEY}}
-          port: 22
+          port: 21098
           source: "ripple.tar.gz"
           target: "public_html/"
 
@@ -51,7 +51,7 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
           key: ${{secrets.SSH_KEY}}
-          port: 22
+          port: 21098
           script: |
             cd public_html/ripple
             tar -xzf ripple.tar.gz
@@ -64,7 +64,7 @@ jobs:
       #     username: ${{ secrets.SSH_USER }}
       #     passphrase: ${{ secrets.SSH_PASSPHRASE }}
       #     key: ${{secrets.SSH_KEY}}
-      #     port: 22
+      #     port: 21098
       #     script: |
       #       cd public_html/ripple
       #       npm install --force
