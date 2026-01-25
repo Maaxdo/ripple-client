@@ -59,14 +59,16 @@ jobs:
             tar -xzf ripple.tar.gz
             rm ripple.tar.gz
 
-      # - name: Restart server process
-      #   uses: appleboy/ssh-action@master
-      #   with:
-      #     host: ${{ secrets.SSH_HOST }}
-      #     username: ${{ secrets.SSH_USER }}
-      #     passphrase: ${{ secrets.SSH_PASSPHRASE }}
-      #     key: ${{secrets.SSH_KEY}}
-      #     port: 21098
-      #     script: |
-      #       cd public_html/ripple
-      #       npm install --force
+      - name: Restart server process
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
+          key: ${{secrets.SSH_KEY}}
+          port: 21098
+          script: |
+            cd public_html/ripple
+            source /home/rippchbn/nodevenv/public_html/ripple/22/bin/activate && cd /home/rippchbn/public_html/ripple && npm install --force
+            touch tmp/restart.txt
+            

@@ -174,18 +174,22 @@ FormSelectField.displayName = "FormSelectField";
 export const FormCheckBoxField = forwardRef<
   null,
   FormFieldProps<CheckboxProps>
->(({ label, error, className, required, children, ...restProps }, ref) => {
+>(({ label, error, required, children, ...restProps }, ref) => {
   return (
-    <>
+    <div className={"space-y-1"}>
       <Label className="flex items-center">
-        <Checkbox {...restProps} ref={ref} />
+        <Checkbox
+          className={error ? "border-red-500" : ""}
+          {...restProps}
+          ref={ref}
+        />
         <span className={"text-xs"}>
           {label} {required && <span className="text-red-500">*</span>}
         </span>
-        {error && <ErrorText>{error}</ErrorText>}
       </Label>
+      {error && <ErrorText>{error}</ErrorText>}
       {children}
-    </>
+    </div>
   );
 });
 

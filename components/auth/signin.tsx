@@ -1,18 +1,58 @@
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
 import { Eye, EyeClosed, Lock, Mail } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { FC } from "react";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { Button } from "@/components/common/button";
 import { Divider } from "@/components/common/divider";
 import { FormField } from "@/components/common/form/form-field";
+import { signIn } from "@/helpers/auth";
 import { useToggle } from "@/hooks/common/toggle";
+import { errorParser } from "@/lib/utils";
+import { SignInSchema, SignInSchemaType } from "@/schema/auth";
 
 export const Signin: FC = () => {
   const { toggle: showPassword, handleToggle } = useToggle();
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm<SignInSchemaType>({
+    resolver: zodResolver(SignInSchema),
+  });
+  const { mutate, isPending } = useMutation({
+    mutationFn: signIn,
+    onSuccess(data) {
+      toast.success("Signed in successfully, you will be redirected soon");
+      if (!data.email_verified_at) {
+        window.location.href = "/confirm-email";
+        return;
+      }
+      window.location.href = "/";
+    },
+    onError(err) {
+      toast.error(errorParser(err));
+    },
+  });
+
+  const onSubmit = handleSubmit((data) => {
+    mutate(data);
+  });
+
   return (
-    <form action="" className={"space-y-4"}>
-      <FormField iconLeft={<Mail size={18} />} label={"Email"} type={"email"} />
+    <form onSubmit={onSubmit} className={"space-y-4"}>
+      <FormField
+        iconLeft={<Mail size={18} />}
+        label={"Email"}
+        type={"email"}
+        {...register("email")}
+        error={errors.email?.message}
+      />
       <div className={"space-y-1"}>
         <FormField
           iconLeft={<Lock size={18} />}
@@ -29,6 +69,8 @@ export const Signin: FC = () => {
           }
           label={"Password"}
           type={showPassword ? "text" : "password"}
+          {...register("password")}
+          error={errors.password?.message}
         />
         <div className="flex justify-end text-[#DE03B5]">
           <Link href={"/forgot-password"} className={"text-xs"}>
@@ -37,7 +79,11 @@ export const Signin: FC = () => {
         </div>
       </div>
       <div>
-        <Button className={"font-bold rounded-lg w-full"} size={"lg"}>
+        <Button
+          disabled={isPending}
+          className={"font-bold rounded-lg w-full"}
+          size={"lg"}
+        >
           Sign in
         </Button>
       </div>
