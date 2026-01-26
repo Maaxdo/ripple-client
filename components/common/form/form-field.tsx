@@ -59,12 +59,12 @@ export const FormField = forwardRef<null, FormFieldProps<InputProps>>(
     return (
       <div className={c}>
         {iconLeft && (
-          <span className={"absolute left-3 top-[52%] text-[#717680]"}>
+          <span className={"absolute left-3 top-9 text-[#717680]"}>
             {iconLeft}
           </span>
         )}
         {iconRight && (
-          <span className={"absolute right-3 top-[52%] text-[#717680]"}>
+          <span className={"absolute right-3 top-9 text-[#717680]"}>
             {iconRight}
           </span>
         )}
