@@ -1,0 +1,84 @@
+import { axiosInstance } from "@/lib/utils";
+import { Paginated } from "@/types/common";
+
+export type Category = {
+  id: string;
+  name: string;
+};
+export type ExperienceLevel = "beginner" | "intermediate" | "expert";
+
+export type Program = {
+  id: string;
+  name: string;
+  author: string;
+  skills: string[];
+  experience_level: ExperienceLevel;
+  category: {
+    id: string;
+    name: string;
+    slug: string;
+  };
+  price: string;
+  rating: {
+    avg_rating: number;
+    count: number;
+  };
+  featured_image: string;
+  created_at: string;
+};
+
+export type Module = {
+  id: string;
+  title: string;
+  description: string;
+  module_no: string;
+};
+
+export type ProgramData = {
+  id: string;
+  name: string;
+  author: string;
+  skills: string[];
+  description: string;
+  modules: Module[];
+  category: {
+    id: string;
+    name: string;
+    slug: string;
+  };
+  rating: {
+    avg_rating: number;
+    count: number;
+  };
+  experience_level: ExperienceLevel;
+  formatted_price: string;
+  price: number;
+  featured_image: string;
+  created_at: string;
+};
+
+export const getProgramsCategories = async (): Promise<Category[]> => {
+  const { AppAxios } = axiosInstance();
+  return AppAxios({
+    url: "/programs/categories",
+  }).then((res) => res.data.data);
+};
+
+export const getPrograms = async (
+  page: string | null,
+  search: string | null,
+): Promise<Paginated<Program[]>> => {
+  const { AppAxios } = axiosInstance();
+
+  return AppAxios({
+    url: "/programs",
+    params: { page, search },
+  }).then((res) => res.data.data);
+};
+
+export const getProgram = async (id: string | null): Promise<ProgramData> => {
+  const { AppAxios } = axiosInstance();
+  return AppAxios({
+    url: `/programs/${id}`,
+  }).then((res) => res.data.data);
+};

@@ -1,10 +1,15 @@
+"use client";
+
 import { Check } from "lucide-react";
 import { FC, PropsWithChildren } from "react";
 import { Button } from "@/components/common/button";
 import { Container } from "@/components/common/container";
+import { useProgram } from "@/hooks/programs";
 import { instrumentSans, madeSoulmaze } from "@/lib/fonts";
 
 export const LearnSkills: FC = () => {
+  const program = useProgram();
+
   return (
     <section className={"space-y-12"}>
       <Container className={"max-w-md lg:max-w-7xl space-y-7"}>
@@ -13,20 +18,17 @@ export const LearnSkills: FC = () => {
         >
           what you&apos;ll <span className={"text-secondary"}>learn</span>
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <Item>
+        {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"> */}
+        <Item>{program.data?.description}</Item>
+        {/* <Item>
             Short sentences about what will be learned in this course. Short
             sentences about what will
           </Item>
           <Item>
             Short sentences about what will be learned in this course. Short
             sentences about what will
-          </Item>
-          <Item>
-            Short sentences about what will be learned in this course. Short
-            sentences about what will
-          </Item>
-        </div>
+          </Item> */}
+        {/* </div> */}
       </Container>
       <Container className={"max-w-md lg:max-w-7xl space-y-7"}>
         <h2
@@ -35,19 +37,9 @@ export const LearnSkills: FC = () => {
           skills you&apos;ll <span className={"text-secondary"}>gain</span>
         </h2>
         <div className="flex flex-wrap gap-3 max-w-2xl">
-          <ItemButton>Skill</ItemButton>
-          <ItemButton>Skill to be earned</ItemButton>
-          <ItemButton>Skill</ItemButton>
-          <ItemButton>Skill</ItemButton>
-          <ItemButton>Skill here</ItemButton>
-          <ItemButton>Skill</ItemButton>
-          <ItemButton>Skill here</ItemButton>
-          <ItemButton>Skill to be earned</ItemButton>
-          <ItemButton>Skill</ItemButton>
-          <ItemButton>Skill</ItemButton>
-          <ItemButton>Skill here</ItemButton>
-          <ItemButton>Skill</ItemButton>
-          <ItemButton>Skill here</ItemButton>
+          {program.data?.skills.map((skill, idx) => (
+            <ItemButton key={idx}>{skill}</ItemButton>
+          ))}
         </div>
       </Container>
     </section>

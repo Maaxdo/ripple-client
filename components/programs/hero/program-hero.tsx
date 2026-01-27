@@ -1,3 +1,5 @@
+"use client";
+
 import { Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,9 +14,12 @@ import {
 import { Button } from "@/components/common/button";
 import { Container } from "@/components/common/container";
 import { Divider } from "@/components/common/divider";
+import { useProgram } from "@/hooks/programs";
 import { madeSoulmaze } from "@/lib/fonts";
 
 export const ProgramHero: FC = () => {
+  const program = useProgram();
+
   return (
     <section>
       <Container
@@ -33,7 +38,7 @@ export const ProgramHero: FC = () => {
                 </BreadcrumbItem>
                 <BreadcrumbSeparator className={"text-white"} />
                 <BreadcrumbItem className={"text-white"}>
-                  Program ID 5742
+                  Program ID {program.data?.id}
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>
@@ -50,15 +55,17 @@ export const ProgramHero: FC = () => {
                 "text-[#F5F3F0B2] text-xs md:text-sm xl:text-base text-center lg:text-left"
               }
             >
-              Brief about program here. Brief about program here. Brief about
-              program here.Brief about program here
+              {program.data?.description}
             </p>
             <p
               className={
                 "text-[#F5F3F0B2] text-xs md:text-sm xl:text-base text-center lg:text-left"
               }
             >
-              Created by <span className={"font-bold text-white"}>Ripple</span>
+              Created by{" "}
+              <span className={"font-bold text-white"}>
+                {program.data?.author}
+              </span>
             </p>
             <div className={"flex justify-center lg:justify-start"}>
               <Button asChild size={"lg"} variant={"secondary"}>
@@ -71,34 +78,29 @@ export const ProgramHero: FC = () => {
             <div className={"pr-5"}>
               <div className="flex items-center gap-2">
                 <h5 className="text-white text-lg md:text-2xl lg:text-3xl xl:text-4xl">
-                  4.6
+                  {program.data?.rating.avg_rating}
                 </h5>
                 <div className="flex items-center">
-                  <Star
-                    className={"fill-[#FF78E6] size-4 md:size-6 lg:size-9"}
-                  />
-                  <Star
-                    className={"fill-[#FF78E6] size-4 md:size-6 lg:size-9"}
-                  />
-                  <Star
-                    className={"fill-[#FF78E6] size-4 md:size-6 lg:size-9"}
-                  />
-                  <Star
-                    className={"fill-[#FF78E6] size-4 md:size-6 lg:size-9"}
-                  />
-                  <Star
-                    className={"fill-[#FF78E6] size-4 md:size-6 lg:size-9"}
-                  />
+                  {Array.from({ length: 5 }).map((_, index) => (
+                    <Star
+                      key={index}
+                      className={
+                        index < Math.round(program.data?.rating.avg_rating || 0)
+                          ? "fill-[#FF78E6] size-4 md:size-6 lg:size-9"
+                          : "fill-[#555555] size-4 md:size-6 lg:size-9"
+                      }
+                    />
+                  ))}
                 </div>
               </div>
               <p className={"text-[#F5F3F0B2] text-xs lg:text-base xl:text-lg"}>
-                46 ratings
+                {program.data?.rating.count} ratings
               </p>
             </div>
             <div className={"pl-5"}>
               <div className="flex items-center gap-2">
-                <h5 className="text-white text-lg md:text-2xl lg:text-3xl xl:text-4xl">
-                  Beginner
+                <h5 className="text-white text-lg md:text-2xl lg:text-3xl xl:text-4xl capitalize">
+                  {program.data?.experience_level}
                 </h5>
               </div>
               <p className={"text-[#F5F3F0B2] text-xs lg:text-base xl:text-lg"}>
@@ -109,13 +111,15 @@ export const ProgramHero: FC = () => {
         </div>
 
         <div className={"w-full lg:w-1/2 flex justify-center"}>
-          <Image
-            src={"/images/programs/program.png"}
-            alt={"Job"}
-            width={670}
-            height={550}
-            className={"w-9/12 xl:w-7/12 object-cover"}
-          />
+          {program.data && (
+            <Image
+              src={program.data?.featured_image}
+              alt={"Job"}
+              width={670}
+              height={550}
+              className={"w-9/12 xl:w-7/12 object-cover"}
+            />
+          )}
         </div>
       </Container>
     </section>

@@ -1,9 +1,15 @@
+"use client";
+
 import Image from "next/image";
 import { FC } from "react";
 import { Container } from "@/components/common/container";
+import { Module as ModuleType } from "@/helpers/programs";
+import { useProgram } from "@/hooks/programs";
 import { madeSoulmaze } from "@/lib/fonts";
 
 export const CourseContent: FC = () => {
+  const program = useProgram();
+
   return (
     <section
       className={"space-y-12 rounded-2xl border border-[#E3E1CD] bg-white my-4"}
@@ -16,10 +22,9 @@ export const CourseContent: FC = () => {
         </h2>
         <div className="flex flex-col lg:flex-row gap-4">
           <div className="space-y-4 lg:w-7/12 xl:w-8/12">
-            <Module />
-            <Module />
-            <Module />
-            <Module />
+            {program.data?.modules.map((module) => (
+              <Module key={module.id} module={module} />
+            ))}
           </div>
           <div className="lg:w-5/12 xl:w-4/12">
             <div
@@ -50,15 +55,12 @@ export const CourseContent: FC = () => {
   );
 };
 
-const Module: FC = () => {
+const Module: FC<{ module: ModuleType }> = ({ module }) => {
   return (
     <div className={"bg-[#F1F1F1] text-[#4E4E4E] rounded-2xl p-5 space-y-1"}>
-      <p className="text-sm">Module 1</p>
-      <h2 className="text-xl font-bold">Module title here</h2>
-      <p className="text-sm font-medium">
-        Short sentences about the module here. Preferably a 2 liner sentence.
-        Preferably a 2 liner sentence.
-      </p>
+      <p className="text-sm">Module {module.module_no}</p>
+      <h2 className="text-xl font-bold">{module.title}</h2>
+      <p className="text-sm font-medium">{module.description}</p>
     </div>
   );
 };
