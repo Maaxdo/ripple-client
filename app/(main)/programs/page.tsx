@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Image from "next/image";
+import { Suspense } from "react";
 import { HeadSection } from "@/components/home/head-section";
 import { Hero } from "@/components/programs/hero";
 import { Skills } from "@/components/programs/skills";
@@ -26,10 +27,12 @@ export default function Page() {
         />
       </HeadSection>
       <div className="bg-white space-y-6">
-        <Skills />
-        <SkillList />
-        <Testimonials />
-        <WhyPrograms />
+        <Suspense>
+          <Skills />
+          <SkillList />
+          <Testimonials />
+          <WhyPrograms />
+        </Suspense>
       </div>
     </>
   );

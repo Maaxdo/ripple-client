@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Image from "next/image";
+import { Suspense } from "react";
 import { Hero } from "@/components/events/hero";
 import { Partner } from "@/components/events/partner";
 import { TypesOfEvents } from "@/components/events/types-of-events";
@@ -27,8 +28,10 @@ export default function Page() {
       </HeadSection>
       <TypesOfEvents />
       <div className="space-y-12">
-        <UpcomingEvents />
-        <Partner />
+        <Suspense>
+          <UpcomingEvents />
+          <Partner />
+        </Suspense>
       </div>
     </>
   );

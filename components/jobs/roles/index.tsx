@@ -39,7 +39,7 @@ export const Roles: FC = () => {
             location={"Google"}
           />
         </div>
-        <Pagination />
+        {/* <Pagination /> */}
       </Container>
     </section>
   );

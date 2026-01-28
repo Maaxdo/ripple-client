@@ -16,7 +16,7 @@ export const Events: FC = () => {
         <Event />
         <Event />
       </div>
-      <Pagination />
+      {/* <Pagination /> */}
     </div>
   );
 };

@@ -1,9 +1,8 @@
+"use client";
+
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { FC } from "react";
-import { array } from "zod";
-import { fr } from "zod/v4/locales";
 import { cn } from "@/lib/utils";
 
 export type PaginationProps = {
