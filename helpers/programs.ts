@@ -57,6 +57,17 @@ export type ProgramData = {
   created_at: string;
 };
 
+export type Review = {
+  id: string;
+  review: string;
+  rating: number;
+  created_at: string;
+  user: {
+    full_name: string;
+    avatar: string;
+  } | null;
+};
+
 export const getProgramsCategories = async (): Promise<Category[]> => {
   const { AppAxios } = axiosInstance();
   return AppAxios({
@@ -76,9 +87,28 @@ export const getPrograms = async (
   }).then((res) => res.data.data);
 };
 
+export const getRelatedPrograms = async (
+  slug: string | null,
+): Promise<Program[]> => {
+  const { AppAxios } = axiosInstance();
+
+  return AppAxios({
+    url: `/programs/${slug}/related`,
+  }).then((res) => res.data.data);
+};
+
 export const getProgram = async (id: string | null): Promise<ProgramData> => {
   const { AppAxios } = axiosInstance();
   return AppAxios({
     url: `/programs/${id}`,
+  }).then((res) => res.data.data);
+};
+
+export const getProgramReviews = async (
+  slug: string | null,
+): Promise<Paginated<Review[]>> => {
+  const { AppAxios } = axiosInstance();
+  return AppAxios({
+    url: `/programs/${slug}/reviews`,
   }).then((res) => res.data.data);
 };

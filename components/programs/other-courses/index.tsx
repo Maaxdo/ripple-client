@@ -1,12 +1,17 @@
+"use client";
+
 import Image from "next/image";
 import { FC } from "react";
 import { Button } from "@/components/common/button";
 import { Container } from "@/components/common/container";
 import { Input } from "@/components/common/form/input";
 import { Program } from "@/components/programs/skills/skill-list";
+import { useRelatedPrograms } from "@/hooks/programs";
 import { madeSoulmaze } from "@/lib/fonts";
 
 export const OtherCourses: FC = () => {
+  const programs = useRelatedPrograms();
+
   return (
     <section className={"space-y-12 rounded-2xl bg-[#F8F8F8] my-4 relative"}>
       <Image
@@ -35,10 +40,9 @@ export const OtherCourses: FC = () => {
           </Button>
         </form>
         <div className="px-3 py-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 rounded-3xl">
-          {/* <Program />
-          <Program />
-          <Program />
-          <Program /> */}
+          {programs.data?.map((program) => (
+            <Program key={program.id} program={program} />
+          ))}
         </div>
       </Container>
     </section>

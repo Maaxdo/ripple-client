@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import NextTopLoader from "nextjs-toploader";
 import { Toaster } from "react-hot-toast";
 import { env } from "@/lib/env";
 import { inter } from "@/lib/fonts";
 import { ReactQueryClientProvider } from "@/providers/query-client";
-
 export const metadata: Metadata = {
   title: {
     template: `%s | ${env.app.name} - Creative Tech Lab for the Future`,
@@ -23,6 +23,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} antialiased`}>
         <ReactQueryClientProvider>
+          <NextTopLoader color={"#DE03B5"} />
           <Toaster />
           {children}
         </ReactQueryClientProvider>

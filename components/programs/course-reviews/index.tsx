@@ -11,9 +11,14 @@ import {
   CarouselPrevious,
 } from "@/components/common/carousel";
 import { Container } from "@/components/common/container";
+import { Review as ReviewType } from "@/helpers/programs";
+import { useProgram, useProgramReview } from "@/hooks/programs";
 import { madeSoulmaze } from "@/lib/fonts";
 
 export const CourseReviews: FC = () => {
+  const program = useProgram();
+  const reviews = useProgramReview();
+
   return (
     <section
       className={"space-y-12 rounded-2xl border border-[#E3E1CD] bg-white my-4"}
@@ -26,41 +31,39 @@ export const CourseReviews: FC = () => {
             course <span className={"text-secondary"}>reviews</span>
           </h2>
           <div className="flex items-center gap-2 pl-6">
-            <h5 className="text-lg md:text-2xl lg:text-3xl xl:text-4xl">4.6</h5>
+            <h5 className="text-lg md:text-2xl lg:text-3xl xl:text-4xl">
+              {program.data?.rating.avg_rating}
+            </h5>
             <div className="flex items-center">
-              <Star className={"fill-[#FF78E6] stroke-none size-4 lg:size-6"} />
-              <Star className={"fill-[#FF78E6] stroke-none size-4 lg:size-6"} />
-              <Star className={"fill-[#FF78E6] stroke-none size-4 lg:size-6"} />
-              <Star className={"fill-[#FF78E6] stroke-none size-4 lg:size-6"} />
-              <Star className={"fill-[#FF78E6] stroke-none size-4 lg:size-6"} />
+              {Array.from({ length: 5 }).map((_, index) => (
+                <Star
+                  key={index}
+                  className={
+                    index < Math.round(program.data?.rating.avg_rating || 0)
+                      ? "fill-[#FF78E6] stroke-none size-4 lg:size-6"
+                      : "fill-gray-400 stroke-none size-4 lg:size-6"
+                  }
+                />
+              ))}
             </div>
             <p className={"text-[#0E0E0EB2] text-sm md:text-base lg:text-lg"}>
-              46 ratings
+              {program.data?.rating.count} ratings
             </p>
           </div>
         </div>
         <div className="hidden lg:grid grid-cols-3 xl:grid-cols-4 gap-4">
-          <Review />
-          <Review />
-          <Review />
-          <Review />
-          <Review />
+          {reviews.data?.data.map((review) => (
+            <Review review={review} key={review.id} />
+          ))}
         </div>
         <div className="block lg:hidden">
           <Carousel className={"w-full"}>
             <CarouselContent>
-              <CarouselItem>
-                <Review />
-              </CarouselItem>
-              <CarouselItem>
-                <Review />
-              </CarouselItem>
-              <CarouselItem>
-                <Review />
-              </CarouselItem>
-              <CarouselItem>
-                <Review />
-              </CarouselItem>
+              {reviews.data?.data.map((review) => (
+                <CarouselItem key={review.id}>
+                  <Review review={review} />
+                </CarouselItem>
+              ))}
             </CarouselContent>
             <CarouselPrevious className={"-left-3 md:-left-12"} />
             <CarouselNext className={"-right-3 md:-right-12"} />
@@ -71,13 +74,12 @@ export const CourseReviews: FC = () => {
   );
 };
 
-const Review: FC = () => {
+const Review: FC<{ review: ReviewType }> = ({ review }) => {
+  const program = useProgram();
+
   return (
     <div className={"rounded-3xl border border-[#E9E9E9] p-6 space-y-3"}>
-      <p className="text-sm md:text-base">
-        Lorem ipsum dolor sit amet consectetur. Sed non sit sed nunc nam nunc
-        tellus. Sed non sit sed nunc nam nunc tellus.
-      </p>
+      <p className="text-sm md:text-base">{review.review}</p>
       <div className="flex items-center gap-4">
         <Image
           src={"/images/programs/testimonial.png"}
@@ -87,15 +89,22 @@ const Review: FC = () => {
           className={"w-6"}
         />
         <div>
-          <div className="font-medium">Flames Joda</div>
+          <div className="font-medium">
+            {review.user?.full_name ?? "Unknown user"}
+          </div>
           <div className="flex divide-x divide-[#00000012]">
-            <span className="pr-2 text-xs">1 week ago</span>
+            <span className="pr-2 text-xs">{review.created_at}</span>
             <div className="pl-2 flex items-center">
-              <Star className={"fill-[#FF78E6] stroke-none size-4"} />
-              <Star className={"fill-[#FF78E6] stroke-none size-4"} />
-              <Star className={"fill-[#FF78E6] stroke-none size-4"} />
-              <Star className={"fill-[#FF78E6] stroke-none size-4"} />
-              <Star className={"fill-[#FF78E6] stroke-none size-4"} />
+              {Array.from({ length: 5 }).map((_, index) => (
+                <Star
+                  key={index}
+                  className={
+                    index < Math.round(program.data?.rating.avg_rating || 0)
+                      ? "fill-[#FF78E6] size-4 stroke-none"
+                      : "fill-[#555555] size-4 stroke-none"
+                  }
+                />
+              ))}
             </div>
           </div>
         </div>

@@ -39,3 +39,15 @@ export const axiosInstance = () => {
     AppAxios,
   };
 };
+
+export function debounce(
+  func: (...args: any[]) => void,
+  wait: number,
+): (...args: any[]) => void {
+  let timeoutId: number | undefined;
+
+  return function (...args: any[]) {
+    clearTimeout(timeoutId);
+    timeoutId = window.setTimeout(() => func(...args), wait);
+  };
+}
