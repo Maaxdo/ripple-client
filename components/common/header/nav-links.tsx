@@ -1,42 +1,18 @@
+"use client";
+
 import { Menu } from "lucide-react";
 import Link from "next/link";
 import { FC } from "react";
 import { Button } from "@/components/common/button";
-import { AUTH_ACTIONS } from "@/components/common/header/index";
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTrigger,
 } from "@/components/common/sheet";
+import { useAuth } from "@/hooks/auth";
+import { NAV_LINKS } from "@/lib/auth";
 
-export type NavLink = {
-  name: string;
-  link: string;
-};
-
-export const NAV_LINKS: NavLink[] = [
-  {
-    name: "Programs",
-    link: "/programs",
-  },
-  {
-    name: "Events",
-    link: "/events",
-  },
-  {
-    name: "Shop",
-    link: "/shop",
-  },
-  {
-    name: "Insights",
-    link: "/insights",
-  },
-  {
-    name: "Jobs",
-    link: "/jobs",
-  },
-];
 export const NavLinks = () => {
   return (
     <div className={"hidden xl:flex items-center space-x-6"}>
@@ -50,6 +26,8 @@ export const NavLinks = () => {
 };
 
 export const NavLinksSM: FC = () => {
+  const { user } = useAuth();
+
   return (
     <div className={"block xl:hidden"}>
       <Sheet>
@@ -71,13 +49,19 @@ export const NavLinksSM: FC = () => {
               ))}
             </ul>
             <ul className={"space-y-4"}>
-              {AUTH_ACTIONS.map((link, index) => (
-                <li key={index}>
+              {user.data ? (
+                <li>
                   <Button asChild variant={"outline"}>
-                    <Link href={link.link}>{link.name}</Link>
+                    <Link href={"/"}>Dashboard</Link>
                   </Button>
                 </li>
-              ))}
+              ) : (
+                <li>
+                  <Button asChild variant={"outline"}>
+                    <Link href={"/signin"}>Sign in</Link>
+                  </Button>
+                </li>
+              )}
             </ul>
           </div>
         </SheetContent>

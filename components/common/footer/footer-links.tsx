@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { FC } from "react";
-import { NAV_LINKS } from "@/components/common/header/nav-links";
+import { NAV_LINKS } from "@/lib/auth";
 
 export const FooterLinks: FC = () => {
   return (

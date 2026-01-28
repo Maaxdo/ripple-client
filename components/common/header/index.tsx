@@ -1,21 +1,12 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
 import { Button } from "@/components/common/button";
-import {
-  NavLink,
-  NavLinks,
-  NavLinksSM,
-} from "@/components/common/header/nav-links";
-
+import { NavLinks, NavLinksSM } from "@/components/common/header/nav-links";
+import { useAuth } from "@/hooks/auth";
 import { env } from "@/lib/env";
-
-export const AUTH_ACTIONS: NavLink[] = [
-  {
-    name: "Sign in",
-    link: "/signin",
-  },
-];
 
 export const Header: FC = () => {
   return (
@@ -35,13 +26,19 @@ export const Header: FC = () => {
 };
 
 export const AuthActions: FC = () => {
+  const { user } = useAuth();
+
   return (
     <div className={"hidden xl:flex items-center space-x-6 "}>
-      {AUTH_ACTIONS.map((link, index) => (
-        <Button key={index} asChild variant={"secondary"}>
-          <Link href={link.link}>{link.name}</Link>
+      {user.data ? (
+        <Button asChild variant={"secondary"}>
+          <Link href={"/"}>Dashboard</Link>
         </Button>
-      ))}
+      ) : (
+        <Button asChild variant={"secondary"}>
+          <Link href={"/signin"}>Sign in</Link>
+        </Button>
+      )}
     </div>
   );
 };
