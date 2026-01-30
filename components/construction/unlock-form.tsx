@@ -56,6 +56,7 @@ export const UnlockForm: FC = () => {
       </div>
       <h2 className={`text-center ${madeSoulmaze.className} `}>Unlock Site</h2>
       <FormField
+        type="password"
         label="Password"
         {...register("password")}
         error={errors.password?.message}

@@ -1,1 +1,2 @@
 1. Add variants to input component
+2. Test signup
