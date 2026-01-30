@@ -26,6 +26,11 @@ export const VerifyEmailSchema = z.object({
     .max(4, "Maximum of 4 digits"),
 });
 
+export const UnlockSiteSchema = z.object({
+  password: z.string().min(1, "Password is required"),
+});
+
 export type SignUpSchemaType = z.infer<typeof SignUpSchema>;
 export type SignInSchemaType = z.infer<typeof SignInSchema>;
 export type VerifyEmailSchemaType = z.infer<typeof VerifyEmailSchema>;
+export type UnlockSiteSchemaType = z.infer<typeof UnlockSiteSchema>;

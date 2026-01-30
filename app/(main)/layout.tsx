@@ -1,4 +1,3 @@
-import "../globals.css";
 import { Footer } from "@/components/common/footer";
 import { Techlab } from "@/components/home/techlab";
 export default function RootLayout({

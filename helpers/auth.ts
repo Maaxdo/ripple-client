@@ -1,8 +1,10 @@
 import Cookies from "js-cookie";
+import { Cookie } from "next/font/google";
 import { axiosInstance } from "@/lib/utils";
 import {
   SignInSchemaType,
   SignUpSchemaType,
+  UnlockSiteSchemaType,
   VerifyEmailSchemaType,
 } from "@/schema/auth";
 
@@ -85,4 +87,28 @@ export const resendEmailVerification = async () => {
     url: "/auth/resend-email-verification",
     method: "POST",
   }).then((res) => res.data);
+};
+
+export const checkSiteUnlocked = async (token?: string): Promise<boolean> => {
+  if (!token) return false;
+
+  const { AppAxios } = axiosInstance();
+  return AppAxios({
+    url: "/settings/check-site-lock-status",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then(() => true)
+    .catch(() => false);
+};
+
+export const unlockSite = async (data: UnlockSiteSchemaType) => {
+  const { AppAxios } = axiosInstance();
+  const res = await AppAxios({
+    url: "/settings/site-login",
+    method: "POST",
+    data: { site_unlock_password: data.password },
+  }).then((res) => res.data.data.token as string);
+  Cookies.set("site_unlocked_token", res, { expires: 1 });
 };

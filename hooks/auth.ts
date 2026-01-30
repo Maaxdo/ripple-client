@@ -11,6 +11,7 @@ export function useAuth() {
     queryFn: fetcher,
     queryKey: ["user"],
     enabled: !!bearer,
+    retry: false,
   });
 
   return { user };

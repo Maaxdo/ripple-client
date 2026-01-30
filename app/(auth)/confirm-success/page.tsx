@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { AuthCheck } from "@/components/auth/auth-check";
 import { EmailConfirmed } from "@/components/auth/email-confirmed";
 
 export const metadata: Metadata = {
@@ -6,5 +7,9 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <EmailConfirmed />;
+  return (
+    <AuthCheck>
+      <EmailConfirmed />
+    </AuthCheck>
+  );
 }

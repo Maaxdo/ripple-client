@@ -1,23 +1,25 @@
 // This function can be marked `async` if using `await` inside
 import { NextRequest, NextResponse } from "next/server";
-import { getUser } from "./helpers/auth";
+import { checkSiteUnlocked, getUser } from "./helpers/auth";
 
 export async function proxy(request: NextRequest) {
   try {
-    const bearerKey = request.cookies.get("bearer_key")?.value;
-    if (!bearerKey) {
-      return NextResponse.redirect(new URL("/signin", request.url));
+    const siteUnlockKey = request.cookies.get("site_unlocked_token")?.value;
+
+    const checkSiteUnlock = await checkSiteUnlocked(siteUnlockKey);
+
+    if (!checkSiteUnlock) {
+      return NextResponse.redirect(new URL("/under-construction", request.url));
     }
-    await getUser(bearerKey);
   } catch (err) {
-    console.log(err);
-    return NextResponse.redirect(new URL("/signin", request.url));
+    return NextResponse.redirect(new URL("/under-construction", request.url));
   }
 }
 
 // See "Matching Paths" below to learn more
 export const config = {
   matcher: [
-    "/((?!api|images|_next/static|_next/image|signin|signup|events|jobs|programs||).*)",
+    // "/((?!api|images|_next/static|_next/image|signin|signup|events|jobs|programs||).*)",
+    "/((?!api|images|_next/static|_next/image|under-construction).*)",
   ],
 };
