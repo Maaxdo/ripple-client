@@ -20,6 +20,6 @@ export async function proxy(request: NextRequest) {
 export const config = {
   matcher: [
     // "/((?!api|images|_next/static|_next/image|signin|signup|events|jobs|programs||).*)",
-    "/((?!api|images|_next/static|_next/image|under-construction).*)",
+    "/((?!api|favicon.ico|images|_next/static|_next/image|under-construction).*)",
   ],
 };
