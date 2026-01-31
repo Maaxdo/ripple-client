@@ -1,7 +1,8 @@
 import { Check } from "lucide-react";
-import { FC, PropsWithChildren } from "react";
+import { ComponentProps, FC, PropsWithChildren } from "react";
 import { Container } from "@/components/common/container";
 import { creatoDisplay } from "@/lib/fonts";
+import { cn } from "@/lib/utils";
 
 export const JobInfo: FC = () => {
   return (
@@ -17,7 +18,7 @@ export const JobInfo: FC = () => {
             the world.
           </p>
         </InfoBlock>
-        <InfoSeperator />
+        <InfoSeparator />
         <InfoBlock title={"What you’ll do"}>
           <p>
             Our ideal Software Engineer will be an integral contributor to the
@@ -26,7 +27,7 @@ export const JobInfo: FC = () => {
             out of solving problems and building beautiful world-class software.
           </p>
         </InfoBlock>
-        <InfoSeperator />
+        <InfoSeparator />
         <InfoBlock title={"What you’ll need to get the job done"}>
           <ul className={"text-sm md:text-base space-y-3"}>
             <li className={"flex items-center gap-5"}>
@@ -47,26 +48,25 @@ export const JobInfo: FC = () => {
             </li>
           </ul>
         </InfoBlock>
-        <InfoSeperator />
+        <InfoSeparator />
         <InfoBlock title={"Benefits"}>
-          <ul className={"text-sm md:text-base space-y-3"}>
-            <li className={"flex items-center gap-5"}>
-              <Check className={"stroke-1"} />
-              <span>3+ years of experience in web development</span>
-            </li>
-            <li className={"flex items-center gap-5"}>
-              <Check className={"stroke-1"} />
-              <span>3+ years of experience in web development</span>
-            </li>
-            <li className={"flex items-center gap-5"}>
-              <Check className={"stroke-1"} />
-              <span>3+ years of experience in web development</span>
-            </li>
-            <li className={"flex items-center gap-5"}>
-              <Check className={"stroke-1"} />
-              <span>3+ years of experience in web development</span>
-            </li>
-          </ul>
+          <InfoList>
+            <InfoListItem>
+              3+ years of experience in web development
+            </InfoListItem>
+            <InfoListItem>
+              3+ years of experience in web development
+            </InfoListItem>
+            <InfoListItem>
+              3+ years of experience in web development
+            </InfoListItem>
+            <InfoListItem>
+              3+ years of experience in web development
+            </InfoListItem>
+            <InfoListItem>
+              3+ years of experience in web development
+            </InfoListItem>
+          </InfoList>
         </InfoBlock>
       </Container>
     </section>
@@ -77,10 +77,32 @@ type InfoBlockProps = PropsWithChildren<{
   title: string;
 }>;
 
-const InfoSeperator: FC = () => (
+type InfoListProps = ComponentProps<"ul">;
+type InfoListItemProps = ComponentProps<"li">;
+
+export const InfoList: FC<InfoListProps> = ({ className, ...restProps }) => {
+  const c = cn("text-sm md:text-base space-y-3", className);
+  return <ul className={c} {...restProps} />;
+};
+
+export const InfoListItem: FC<InfoListItemProps> = ({
+  className,
+  children,
+  ...restProps
+}) => {
+  const c = cn("flex items-center gap-5", className);
+  return (
+    <li className={c} {...restProps}>
+      <Check className={"stroke-1"} />
+      <span>{children}</span>
+    </li>
+  );
+};
+
+export const InfoSeparator: FC = () => (
   <div className={"h-[0.05rem] bg-gray-200 my-8"}></div>
 );
-const InfoBlock: FC<InfoBlockProps> = ({ title, children }) => {
+export const InfoBlock: FC<InfoBlockProps> = ({ title, children }) => {
   return (
     <div className={"space-y-4"}>
       <h3

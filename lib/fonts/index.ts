@@ -29,6 +29,11 @@ export const creatoDisplay = localFont({
       weight: "400",
     },
     {
+      path: "./CreatoDisplay-Medium.otf",
+      style: "medium",
+      weight: "500",
+    },
+    {
       path: "./CreatoDisplay-Bold.otf",
       style: "bold",
       weight: "700",

@@ -1,5 +1,6 @@
 import { ChevronRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { FC } from "react";
 import { Pagination } from "@/components/common/pagination";
 
@@ -24,16 +25,23 @@ export const Events: FC = () => {
 const Event: FC = () => {
   return (
     <div className={"bg-gray-100 p-4 rounded-3xl space-y-3"}>
-      <Image
-        className={"block object-cover w-full rounded-3xl h-72"}
-        src={"/images/home/event-1.png"}
-        alt={"Title here"}
-        width={230}
-        height={330}
-      />
+      <Link href={"/events/slug"} className={"block"}>
+        <Image
+          className={"block object-cover w-full rounded-3xl h-72"}
+          src={"/images/home/event-1.png"}
+          alt={"Title here"}
+          width={230}
+          height={330}
+        />
+      </Link>
       <div className="flex justify-between items-center gap-12">
         <div className={"text-[#4E4E4E]"}>
-          <h3 className={"font-bold text-sm md:text-base"}>Event title</h3>
+          <Link
+            href={"/events/slug"}
+            className={"font-bold text-sm md:text-base"}
+          >
+            Event title
+          </Link>
           <p className={"text-xs md:text-sm"}>02/12/25</p>
         </div>
         <div>
