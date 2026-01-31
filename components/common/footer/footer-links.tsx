@@ -4,7 +4,7 @@ import { NAV_LINKS } from "@/lib/auth";
 
 export const FooterLinks: FC = () => {
   return (
-    <div className={"md:w-4/12 grid grid-cols-1 md:grid-cols-2 gap-8"}>
+    <div className={"lg:w-4/12 grid grid-cols-1 md:grid-cols-2 gap-8"}>
       <ul className={"space-y-4"}>
         {NAV_LINKS.map((link, index) => (
           <li key={index}>

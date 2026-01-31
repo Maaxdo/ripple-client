@@ -8,7 +8,7 @@ export const Footer: FC = () => {
     <div className={"space-y-12"}>
       <div className={"h-[0.1rem] bg-[#4B4B4B]"}></div>
 
-      <div className="flex flex-col md:flex-row justify-between gap-6">
+      <div className="flex flex-col lg:flex-row justify-between gap-6">
         <FooterInfo />
         <FooterLinks />
       </div>
