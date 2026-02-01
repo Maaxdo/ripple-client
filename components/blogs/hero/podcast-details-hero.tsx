@@ -76,7 +76,7 @@ export const PodcastDetailsHero: FC = () => {
               }
             />
             <Image
-              src={"/images/home/event-1.png"}
+              src={"/images/blogs/podcast.png"}
               alt={"Job"}
               width={350}
               height={500}

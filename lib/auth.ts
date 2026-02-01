@@ -24,4 +24,8 @@ export const NAV_LINKS: NavLink[] = [
     name: "Jobs",
     link: "/jobs",
   },
+  {
+    name: "Blog & Podcasts",
+    link: "/blogs",
+  },
 ];
